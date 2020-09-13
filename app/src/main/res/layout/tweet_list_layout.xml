@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_width="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="-45dp"
+        android:layout_height="wrap_content">
+
+
+    <FrameLayout android:id="@+id/frame"
+                 android:layout_marginLeft="2dp"
+                 android:layout_marginTop="2dp"
+                 android:layout_width="100dp"
+                 android:layout_height="100dp"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:id="@+id/imageUser"/>
+
+        <ImageView android:id="@+id/circle_crop"
+                   android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:src="@mipmap/gevrek"/>
+    </FrameLayout>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="115dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:id="@+id/name"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@+id/frame"
+            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nickAndTime"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/name"
+            android:layout_marginStart="17dp"/>
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tweetContent"
+            android:autoLink="web"
+            android:textIsSelectable="true"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@+id/frame"
+            android:layout_marginTop="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/name"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/retAndFav"
+            android:layout_marginTop="35dp"
+            app:layout_constraintTop_toBottomOf="@+id/tweetContent"
+            android:layout_marginStart="25dp"
+            app:layout_constraintStart_toEndOf="@+id/frame"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

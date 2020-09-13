@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <group android:id="@+id/group1" android:checkableBehavior="single">
+        <item
+                android:title="Топ вести"/>
+        <item
+                android:title="Свет"/>
+        <item
+                android:title="Економија"/>
+        <item
+                android:title="Бизнис"/>
+        <item
+                android:title="Спорт"/>
+        <item
+                android:title="Технологија"/>
+    </group>
+
+    <group android:id="@+id/group2">
+        <item
+                android:title="Скопје"/>
+        <item
+                android:title="Охрид"/>
+        <item
+                android:title="Битола"/>
+        <item
+                android:title="Прилеп"/>
+        <item
+                android:title="Гостивар"/>
+        <item
+                android:title="Струмица"/>
+    </group>
+
+    <group android:id="@+id/group3">
+        <item
+                android:title="Србија"/>
+        <item
+                android:title="Грција"/>
+        <item
+                android:title="Албанија"/>
+        <item
+                android:title="Бугарија"/>
+    </group>
+    <group android:id="@+id/group4">
+        <item
+                android:title="Топ Твитови"/>
+    </group>
+
+</menu>

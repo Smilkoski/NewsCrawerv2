@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Вести</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: remove this placeholder text -->
+
+    <string name="textview">TextView</string>
+</resources>

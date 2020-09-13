@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "678176220649",
+    "firebase_url": "https://news-crawler-v2.firebaseio.com",
+    "project_id": "news-crawler-v2",
+    "storage_bucket": "news-crawler-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678176220649:android:570c06479d341da5939778",
+        "android_client_info": {
+          "package_name": "com.example.newscrawerv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678176220649-tf58ihr9shmr5u5b3208i5damisngrs9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi2ij-wWbILuCTdtJZYrcRCAhwSl01oXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678176220649-tf58ihr9shmr5u5b3208i5damisngrs9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
