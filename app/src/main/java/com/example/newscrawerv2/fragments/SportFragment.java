@@ -96,9 +96,9 @@ public class SportFragment extends Fragment implements CustomListAdapter.OnArtic
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            new ArticleFactoryTask().execute("https://derbi.mk/posledni-vesti/");
-        }
+        articleFactoryTask = new ArticleFactoryTask();
+        articleFactoryTask.execute("https://derbi.mk/posledni-vesti/");
+
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -120,6 +120,7 @@ public class SportFragment extends Fragment implements CustomListAdapter.OnArtic
                         .getElementsByClass("mvp-blog-story-wrap left relative infinite-post")
                         .select("a")
                         .stream().map(e -> e.attr("href"))
+                        .limit(15)
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -134,7 +135,10 @@ public class SportFragment extends Fragment implements CustomListAdapter.OnArtic
 
         @Override
         protected void onPostExecute(ArrayList<String> strings) {
-            strings.forEach(s -> new ScanArticleTask().execute(s));
+            strings.forEach(s -> {
+                scanArticleTask = new ScanArticleTask();
+                scanArticleTask.execute(s);
+            });
         }
     }
 

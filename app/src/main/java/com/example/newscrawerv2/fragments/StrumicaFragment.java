@@ -136,6 +136,7 @@ public class StrumicaFragment extends Fragment implements CustomListAdapter.OnAr
                         .select("a")
                         .stream().map(e -> "https://strumicanet.com" + e.attr("href"))
                         .distinct()
+                        .limit(15)
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 e.printStackTrace();

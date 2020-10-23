@@ -18,7 +18,7 @@ public class CustomListAdapter extends RecyclerView.Adapter {
 
     public CustomListAdapter(List<Article> dataset, OnArticleListener onArticleListener) {
         this.articles = dataset;
-        this.onArticleListener=onArticleListener;
+        this.onArticleListener = onArticleListener;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class CustomListAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_layout, viewGroup, false);
-        return new CustomListViewHolder(view,onArticleListener);
+        return new CustomListViewHolder(view, onArticleListener);
     }
 
     @Override

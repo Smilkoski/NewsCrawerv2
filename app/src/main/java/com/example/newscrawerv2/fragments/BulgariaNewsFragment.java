@@ -172,6 +172,7 @@ public class BulgariaNewsFragment extends Fragment implements CustomListAdapter.
                         .select(".item > a")
                         .stream()
                         .map(w -> "https://www.novinite.bg/" + w.attr("href"))
+                        .limit(15)
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 e.printStackTrace();

@@ -102,9 +102,8 @@ public class OhridNewsFragment extends Fragment implements CustomListAdapter.OnA
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            generateAllArticles();
-        }
+        generateAllArticles();
+
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -154,6 +153,7 @@ public class OhridNewsFragment extends Fragment implements CustomListAdapter.OnA
                         .stream()
                         .map(w -> w.attr("href"))
                         .distinct()
+                        .limit(15)
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 e.printStackTrace();

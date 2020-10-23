@@ -166,7 +166,7 @@ public class GreekNewsFragment extends Fragment implements CustomListAdapter.OnA
                         .stream()
                         .map(w -> w.attr("href"))
                         .distinct()
-                        .limit(20)
+                        .limit(15)
                         .collect(Collectors.toList());
 
             } catch (IOException e) {

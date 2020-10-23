@@ -40,40 +40,40 @@ public class BusinessFragment extends Fragment implements CustomListAdapter.OnAr
     }
 
     private static Article scanKapital(Document doc) {
-        Article article = new Article();
         try {
             String title = doc.title();
             title = title.replace(" | КАПИТАЛ", "");
-            article.setTitle(title);
-            String vremeNaObjava = doc.getElementsByTag("time")
-                    .first().ownText();
+//            System.out.println("title: " + title);
+            String vremeNaObjava = doc.getElementsByClass("mvp-post-date updated")
+                    .select("time")
+                    .first().attr("datetime");
 
-            vremeNaObjava = vremeNaObjava.split(" ")[0] + " 08 2020, " + vremeNaObjava.split(" ")[3];
-            Date date = new SimpleDateFormat("dd mm yyyy, hh:mm").parse(vremeNaObjava);
-            article.setVremeNaObjava(date);
+            Date date = new SimpleDateFormat("yyyy-mm-dd").parse(vremeNaObjava);
+//            System.out.println("date: " + date);
 
             String imgSrc = doc
-                    .getElementsByClass("entry-content")
-                    .select("img")
-                    .first()
-                    .attr("src");
+                    .getElementsByTag("meta")
+                    .stream()
+                    .filter(w -> w.attr("property").equals("og:image") ||
+                            w.attr("property").equals("twitter:image"))
+                    .findFirst().orElse(null)
+                    .attr("content");
+//            System.out.println("imgsrc: " + imgSrc);
             InputStream input = new java.net.URL(imgSrc).openStream();
             Bitmap bitmap = BitmapFactory.decodeStream(input);
-            article.setBitmap(bitmap);
 
-            doc.getElementsByClass("entry-content")
-                    .first()
+            ArrayList<String> list = (ArrayList<String>) doc.getElementsByClass("theiaPostSlider_preloadedSlide")
                     .select("p, h6, strong")
                     .stream()
                     .map(Element::ownText)
                     .filter(s -> !s.equals(""))
                     .filter(s -> !s.equals(" "))
-                    .forEach(article::addContent);
-
+                    .collect(Collectors.toList());
+            return new Article(title, list, date, bitmap);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return article;
+        return null;
     }
 
     @Override
@@ -109,10 +109,9 @@ public class BusinessFragment extends Fragment implements CustomListAdapter.OnAr
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            articleFactoryTask = new ArticleFactoryTask();
-            articleFactoryTask.execute("https://kapital.mk/kategorija/balkan-biznis-i-politika/");
-        }
+        articleFactoryTask = new ArticleFactoryTask();
+        articleFactoryTask.execute("https://kapital.mk/?s=бизнис");
+//        articleFactoryTask.execute("https://kapital.mk/page/2/?s=бизнис");
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -127,11 +126,12 @@ public class BusinessFragment extends Fragment implements CustomListAdapter.OnAr
         protected List<String> doInBackground(String... strings) {
             try {
                 return Jsoup.connect(strings[0]).get()
-                            .getElementsByClass("rest inner padding-bottom-zero")
-                            .select("div.single-post-thumb > a")
-                            .stream()
-                            .map(a -> a.attr("href"))
-                            .collect(Collectors.toList());
+                        .getElementsByClass("mvp-blog-story-list left relative infinite-content")
+                        .select("a")
+                        .stream()
+                        .map(a -> a.attr("href"))
+                        .limit(15)
+                        .collect(Collectors.toList());
             } catch (IOException e) {
                 e.printStackTrace();
             }

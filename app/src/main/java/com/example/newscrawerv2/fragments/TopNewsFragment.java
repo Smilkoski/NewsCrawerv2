@@ -51,16 +51,20 @@ public class TopNewsFragment extends Fragment implements CustomListAdapter.OnArt
 //                    .select("time")
                     .first().text();
 
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd.mm.yyyy");
             Date date = formatter.parse(vremeNaObjava);
 
             String imgSrc = doc
-                    .getElementsByClass("post-image")
-//                    .getElementsByClass("td-post-featured-image")
-                    .select("a")
-                    .first().attr("href");
+                    .getElementsByTag("meta")
+                    .stream()
+                    .filter(e -> e.attr("property").equals("og:image") ||
+                            e.attr("property").equals("og:image:url") ||
+                            e.attr("property").equals("og:image:secure_url"))
+                    .findFirst().get()
+                    .attr("content");
             if (imgSrc.equals("") || imgSrc.equals(" "))
                 imgSrc = "https://i.imgflip.com/1rv9w5.jpg";
+
             InputStream input = new java.net.URL(imgSrc).openStream();
             Bitmap bitmap = BitmapFactory.decodeStream(input);
 
@@ -112,9 +116,8 @@ public class TopNewsFragment extends Fragment implements CustomListAdapter.OnArt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
-        if (savedInstanceState == null) {
-            generateAllArticles();
-        }
+
+        generateAllArticles();
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -122,8 +125,8 @@ public class TopNewsFragment extends Fragment implements CustomListAdapter.OnArt
     public void generateAllArticles() {
 
         List<String> urls = Arrays.asList(
-                "https://fokus.mk/kategorija/aktuelno-2/"
-//                "https://fokus.mk/kategorija/aktuelno-2/page/2/"
+                "https://fokus.mk/kategorija/aktuelno-2/",
+                "https://fokus.mk/kategorija/aktuelno-2/page/2/"
 //                "https://fokus.mk/kategorija/aktuelno-2/page/3/",
 //                "https://fokus.mk/kategorija/aktuelno-2/page/4/",
 //                "https://fokus.mk/kategorija/aktuelno-2/page/5/"
@@ -162,9 +165,7 @@ public class TopNewsFragment extends Fragment implements CustomListAdapter.OnArt
         protected List<String> doInBackground(String... strings) {
             try {
                 List<String> list = Jsoup.connect(strings[0]).get()
-//                        .getElementsByClass("penci-entry-title entry-title grid-title")
-                        .getElementsByClass("grid-style grid-2-style")
-                        .select(".thumbnail")
+                        .getElementsByClass("penci-entry-title entry-title grid-title")
                         .select("a")
                         .stream().map(e -> e.attr("href"))
                         .distinct()

@@ -129,9 +129,8 @@ public class AlbaniaNewsFragment extends Fragment implements CustomListAdapter.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            generateAllArticles();
-        }
+        generateAllArticles();
+        initAndDownloadTranslator();
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
 
@@ -177,7 +176,7 @@ public class AlbaniaNewsFragment extends Fragment implements CustomListAdapter.O
                         .stream()
                         .map(w -> w.attr("href"))
                         .forEach(list::add);
-                return list;
+                return list.subList(0, 15);
             } catch (IOException e) {
                 e.printStackTrace();
             }

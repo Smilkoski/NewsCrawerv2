@@ -57,7 +57,7 @@ public class WorldNewsFragment extends Fragment implements CustomListAdapter.OnA
             InputStream input = new java.net.URL(imgSrc).openStream();
             Bitmap bitmap = BitmapFactory.decodeStream(input);
             ArrayList<String> list = (ArrayList<String>) doc.getElementsByClass("entry-content entry clearfix")
-                    .select("p")
+                    .select("p,span,strong")
                     .stream()
                     .map(Element::ownText)
                     .filter(s -> !s.equals(""))
@@ -137,6 +137,7 @@ public class WorldNewsFragment extends Fragment implements CustomListAdapter.OnA
                         .map(w -> w.attr("href"))
                         .filter(w -> !w.startsWith("https://mia.mk/author"))
                         .distinct()
+                        .limit(15)
                         .collect(Collectors.toList());
 
             } catch (IOException e) {

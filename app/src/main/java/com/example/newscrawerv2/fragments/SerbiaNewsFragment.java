@@ -126,10 +126,9 @@ public class SerbiaNewsFragment extends Fragment implements CustomListAdapter.On
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            generateAllArticles();
-            initAndDownloadTranslator();
-        }
+        generateAllArticles();
+        initAndDownloadTranslator();
+
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
 
@@ -189,7 +188,7 @@ public class SerbiaNewsFragment extends Fragment implements CustomListAdapter.On
                         .select("a")
                         .stream()
                         .map(w -> "https://www.srbijadanas.com" + w.attr("href"))
-                        .limit(20)
+                        .limit(15)
                         .collect(Collectors.toList());
 
 

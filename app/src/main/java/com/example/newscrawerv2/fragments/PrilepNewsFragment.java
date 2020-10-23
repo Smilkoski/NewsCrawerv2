@@ -53,7 +53,7 @@ public class PrilepNewsFragment extends Fragment implements CustomListAdapter.On
             Date date = new SimpleDateFormat("dd/mm/yyyy").parse(vreme);
 
             Element e = doc.getElementById("post-feat-img");
-            String imgSrc="https://www.radiomof.mk/wp-content/uploads/2018/08/heder-web.png";
+            String imgSrc = "https://www.radiomof.mk/wp-content/uploads/2018/08/heder-web.png";
             if (e != null) {
                 imgSrc = e.select("img")
                         .attr("src");
@@ -107,9 +107,8 @@ public class PrilepNewsFragment extends Fragment implements CustomListAdapter.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            generateAllArticles();
-        }
+        generateAllArticles();
+
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -158,6 +157,7 @@ public class PrilepNewsFragment extends Fragment implements CustomListAdapter.On
                         .stream()
                         .map(w -> w.attr("href"))
                         .distinct()
+                        .limit(15)
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 e.printStackTrace();

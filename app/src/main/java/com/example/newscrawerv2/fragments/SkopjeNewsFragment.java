@@ -110,9 +110,8 @@ public class SkopjeNewsFragment extends Fragment implements CustomListAdapter.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            generateAllArticles();
-        }
+        generateAllArticles();
+
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -162,6 +161,7 @@ public class SkopjeNewsFragment extends Fragment implements CustomListAdapter.On
                         .stream()
                         .map(w -> "https://skopjeinfo.mk" + w.attr("href"))
                         .distinct()
+                        .limit(15)
                         .filter(w -> !w.equals("https://skopjeinfo.mk/instagram-foto-na-denot/every-sunset-brings-promise-new-dawn"))
                         .filter(w -> !w.equals("https://skopjeinfo.mk/retro-video-od-skopje-vo-1998-godina"))
                         .collect(Collectors.toList());

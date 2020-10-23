@@ -121,6 +121,7 @@ public class TechnologyFragment extends Fragment implements CustomListAdapter.On
                         .stream()
                         .map(a -> "https://www.crnobelo.com" + a.attr("href"))
                         .filter(s -> s.length() > 55)
+                        .limit(15)
                         .collect(Collectors.toList());
 
             } catch (IOException e) {

@@ -1,7 +1,6 @@
 package com.example.newscrawerv2;
 
 import android.graphics.Bitmap;
-import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,9 +58,9 @@ public class Article {
 
     public String getVremeNaObjava() {
         vremeNaObjava.setMonth(8);
-        String []parts =  vremeNaObjava.toString().split(" ");
+        String[] parts = vremeNaObjava.toString().split(" ");
 
-        return parts[2]+"-"+parts[1]+"-"+parts[5];
+        return parts[2] + "-" + parts[1] + "-" + parts[5];
     }
 
     public void setVremeNaObjava(Date vremeNaObjava) {

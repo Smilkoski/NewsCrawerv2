@@ -50,6 +50,6 @@ public class CustomListViewHolder extends RecyclerView.ViewHolder implements Vie
 
     @Override
     public void onClick(View v) {
-    onArticleListener.onArticleClick(getAdapterPosition());
+        onArticleListener.onArticleClick(getAdapterPosition());
     }
 }

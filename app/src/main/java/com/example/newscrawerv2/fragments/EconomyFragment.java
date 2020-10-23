@@ -90,9 +90,8 @@ public class EconomyFragment extends Fragment implements CustomListAdapter.OnArt
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initRecycleView();
 
-        if (savedInstanceState == null) {
-            generateAllArticles();
-        }
+        generateAllArticles();
+
 
         return inflater.inflate(R.layout.blanc_layout, container, false);
     }
@@ -142,6 +141,7 @@ public class EconomyFragment extends Fragment implements CustomListAdapter.OnArt
                 return Jsoup.connect(strings[0]).get()
                         .getElementsByClass("penci-link-post penci-image-holder penci-disable-lazy")
                         .stream().map(e -> e.attr("href"))
+                        .limit(15)
                         .collect(Collectors.toList());
 
             } catch (IOException e) {
