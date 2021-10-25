@@ -1,4 +1,4 @@
 # News Crawer
-!(assets/main.jpg?raw=true)
-!(assets/side.jpg?raw=true)
-!(ssets/tweets.jpg?raw=true)
+![](assets/main.jpg)
+![](assets/side.jpg)
+![](assets/tweets.jpg)
